@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- inicio css -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+
+    <!-- inicio css -->
+
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="app/config/pd-app.js"></script>
+    <script src="app/controler/index.controler.js"></script>
+    <script src="node_modules/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <link rel="stylesheet" href="node_modules/angular-toastr/dist/angular-toastr.css">
+    <script src="app/filter/maiuscuo.filter.js"></script>
+
+
+</head>
+<body ng-app="pdApp" class="container">
+
+<div ng-controller="cadastroCarroController">
+
+    <form name="CarroForm"novalidate>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                cadastro de carro
+            </div>
+
+
+    <div class="panel-body">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group"
+            ng-class ="{'has-error':carroForm.nomeCarro.$touched && carroForm.cor.$invalid }">
+                <label>Carro</label>
+                <input type="text"
+                       class="form-control"
+                       ng-model="entidade.nomeCarro"
+                ng-required="true"
+                ng-minlength="3"
+                ng-maxlenght="20"
+                name="NomeCarro"
+                required>
+                <!div ng-messages="carroForm.cor.$error"
+                     ng-if="carroForm.cor.$touched"
+                     class="text-danger"!>
+
+
+
+                <div ng-messages="carroForm.nomeCarro.$error">
+                    <div ng-message="required">campo obrigatório</div>
+                    <div ng-message="minlength">campo obrigatório</div>
+                    <div ng-message="maxlength">campo obrigatório</div>
+
+
+                <!div ng-messages="carroForm.nomeCarro.$error"!>
+                    <!div ng-messages-include="app/template/input-ng-messages.html"!>
+
+            </div>
+
+            </div>
+        </div>
+    </form>
+
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Cor</label>
+                    <input type="text"
+                    class="form-control"
+                    ng-model="entidade.nomeCarro"
+                    name="Cor"
+                    required>
+
+
+
+                    <div ng-messages="carroForm.nomeCarro.$error">
+                        <div ng-message="required">campo obrigatório</div>
+                        <div ng-message="minlength">campo obrigatório</div>
+                        <div ng-message="maxlength">campo obrigatório</div>
+
+
+                    </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-3">
+                <table class="table">
+                    <tr>
+                        <th>Nome do Carro</th>
+                        <th>Cor</th>
+                        <th>Data de lançamento</th>
+                    </tr>
+                    <tr ng-repeat="carro in listaCarro">
+                        <td ng-bind="carro.nomeCarro"></td>
+                        <td ng-bind="carro.cor"></td>
+                        <td ng-bind="carro.dataLancamento | date : 'dd/mm/yyyy'"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+
+        </div>
+    <div class="panel-footer">
+        <button class="btn btn-primary navbar-btn"
+                ng-click="salvar()">salvar
+        </button>
+
+        <button class="btn btn-warning navbar-btn"
+                ng-click="limpar()">Limpar
+        </button>
+
+    </div>
+
+    </div>
+</div>
+</div>
+</body>
+</html>
